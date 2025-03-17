@@ -21,7 +21,7 @@ const Suggestions: FC<Props> = ({
         <input
           type="button"
           key={index}
-          className={index === active ? "active" : ""}
+          className={index === active ? "active sug-select" : "sug-select"}
           value={suggestion}
           onClick={() => onSelect(suggestion)}
           onMouseEnter={() => setActive(index)}

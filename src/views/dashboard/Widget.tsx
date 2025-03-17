@@ -5,7 +5,7 @@ const Widget: React.FC<React.PropsWithChildren<WidgetDisplay>> = ({
   children,
   colour,
   fontFamily,
-  fontSize = 24,
+  fontSize = 20,
   fontWeight,
 }) => (
   <div
