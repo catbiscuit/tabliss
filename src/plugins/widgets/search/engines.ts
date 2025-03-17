@@ -36,6 +36,8 @@ export const engines: Engine[] = [
     key: "baidu",
     name: "Baidu 百度",
     search_url: "https://www.baidu.com/s?wd={searchTerms}",
+    suggest_url:
+      "https://suggestion.baidu.com/su?wd={searchTerms}",
   },
   {
     key: "duckduckgo",
