@@ -2,6 +2,7 @@ import React, { FC, useMemo, useRef, useState } from "react";
 import { defineMessages, useIntl } from "react-intl";
 
 import { getSuggestions } from "./getSuggestions";
+import { getSuggestionsBaidu } from "./getSuggestionsBaidu";
 import Suggestions from "./Suggestions";
 import { Props, defaultData } from "./types";
 import { buildUrl, getSearchUrl, getSuggestUrl } from "./utils";
@@ -31,13 +32,21 @@ const Search: FC<Props> = ({ data = defaultData }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     previousValue.current = event.target.value;
 
-    if (BUILD_TARGET === "web") {
+    if (BUILD_TARGET === "web" || BUILD_TARGET === "firefox") {
       const suggestUrl = getSuggestUrl(data.suggestionsEngine);
       if (suggestUrl) {
-        getSuggestions(event.target.value, suggestUrl).then((suggestions) => {
-          setSuggestions(suggestions.slice(0, data.suggestionsQuantity));
-          setActive(undefined);
-        });
+        if(suggestUrl.includes("baidu")){
+          getSuggestionsBaidu(event.target.value, suggestUrl).then((suggestions) => {
+            setSuggestions(suggestions.slice(0, data.suggestionsQuantity));
+            setActive(undefined);
+          });
+        }
+        else{
+          getSuggestions(event.target.value, suggestUrl).then((suggestions) => {
+            setSuggestions(suggestions.slice(0, data.suggestionsQuantity));
+            setActive(undefined);
+          });
+        }
       }
     }
   };
@@ -103,6 +112,7 @@ const Search: FC<Props> = ({ data = defaultData }) => {
         type="text"
         onChange={handleChange}
         onKeyUp={handleKeyUp}
+        className="kw"
       />
 
       {suggestions && (
