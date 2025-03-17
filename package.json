@@ -9,9 +9,9 @@
     "build:firefox": "NODE_ENV=production BUILD_TARGET=firefox webpack",
     "build:web": "NODE_ENV=production BUILD_TARGET=web webpack",
     "dev": "npm run dev:web",
-    "dev:chromium": "BUILD_TARGET=chromium webpack --watch",
-    "dev:firefox": "BUILD_TARGET=firefox webpack --watch",
-    "dev:web": "BUILD_TARGET=web webpack serve",
+    "dev:chromium": "NODE_ENV=dev BUILD_TARGET=chromium webpack --watch",
+    "dev:firefox": "NODE_ENV=dev BUILD_TARGET=firefox webpack --watch",
+    "dev:web": "NODE_ENV=dev BUILD_TARGET=web webpack serve",
     "test": "tsc -p tsconfig.test.json && jest",
     "translations": "node ./scripts/translations.js"
   },
